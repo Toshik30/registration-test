@@ -4,6 +4,7 @@ export interface InputProps {
     size?: 's'|'m',
     disabled?: boolean,
     type: 'text'|'number'|'email'|'password',
+    placeholder?: string,
 }
 export const InputCustom =({
     size = 'm',

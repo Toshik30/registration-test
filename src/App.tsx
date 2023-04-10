@@ -1,9 +1,11 @@
 import React from 'react'
 
-const App = () => {
+import Registration from './Pages/Registration/Registration'
+
+const App:React.FC = () => {
   return (
     <div>
-        <h1>Hello</h1>
+       <Registration/>
     </div>
   )
 }

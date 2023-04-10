@@ -1,9 +1,14 @@
 .input {
-    font-size: 24px;
+    font-size: 12px;
+    line-height: 15px;
     border-radius: 5px;
+    border: 1px solid #CBD5E2;
+    border-radius: 4px;
+    padding: 12px 16px;
     &:focus {
         outline-offset: none;
         outline-style: none;
+        border: 2px solid #3843ED;
     }
     &.s {
         font-size: 10px;

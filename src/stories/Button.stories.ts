@@ -18,6 +18,7 @@ export const ButtonDefault: StoryObj<typeof ButtonCustom> = {
 }
 export const ButtonPrimary:StoryObj<typeof ButtonCustom> = {
     args: {
-        title:'Press!'
+        title:'Press!',
+        className:'primary'
     }
 }
