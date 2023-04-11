@@ -1,0 +1,17 @@
+.main {
+    min-height: 100vh;
+
+    &__choose {
+        position: absolute;
+        transform: translateX(640px);
+        font-weight: 800;
+        font-size: 24px;
+        span {
+            cursor:  pointer;
+            transition: .3s color;
+            &:hover {
+                color: greenyellow;
+            }
+        }
+    }
+}

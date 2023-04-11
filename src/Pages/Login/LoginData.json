@@ -1,0 +1,38 @@
+{
+    "heading": "Войти в аккаунт",
+    "description": "Введите ваш E-mail и пароль, чтобы начать использовать все преимущества платформы:",
+    "list": [
+        {
+            "item": "Автоматизация HR",
+            "img": "/img/icon/TickSquare.svg"
+        },
+        {
+            "item": "Интеграция с job-порталами",
+            "img": "/img/icon/TickSquare.svg"
+        },
+        {
+            "item": "Оценка персонала",
+            "img": "/img/icon/TickSquare.svg"
+        },
+        {
+            "item": "Синхронизация с Outlook",
+            "img": "/img/icon/TickSquare.svg"
+        },
+        {
+            "item": "Безопасность данных",
+            "img": "/img/icon/TickSquare.svg"
+        },
+        {
+            "item": "Парсинг резюме",
+            "img": "/img/icon/TickSquare.svg"
+        },
+        {
+            "item": "Мультиязычность",
+            "img": "/img/icon/TickSquare.svg"
+        },
+        {
+            "item": "Конструктор отчетности",
+            "img": "/img/icon/TickSquare.svg"
+        }
+    ]
+}

@@ -1,11 +1,10 @@
 import React from 'react'
-
-import Registration from './Pages/Registration/Registration'
-
+import Main from './Pages/Main/Main'
+import './assets/style/global.scss'
 const App:React.FC = () => {
   return (
-    <div>
-       <Registration/>
+    <div className='container'>
+       <Main/>
     </div>
   )
 }

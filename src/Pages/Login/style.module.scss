@@ -1,0 +1,44 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+    label {
+        &::before {
+            display: none !important;
+        }
+    }
+}
+.loginPage {
+    display: flex;
+    &__description {
+        max-width: 600px;
+        width: 100%;
+        background: url('../../../public/img/Work.png')bottom  no-repeat, linear-gradient(180deg, #8892FF 0%, #6D6BE5 18.75%);
+        background-size: contain;
+        color: #fff;
+        padding: 92px 40px 0px 64px;
+        min-height: 100vh;
+
+        &__item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            img {
+                margin-right: 10px;
+            }
+        }
+        & > p {
+            margin: 24px 0px 75px;
+        }
+    }
+}
+.login {
+    max-width: 864px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
