@@ -1,17 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styles from './style.module.scss'
-import Registration from '../Registration/Registration'
+
 import LoginPage from '../Login/LoginPage'
+import RegistrationPage from '../Registration/RegistrationPage'
+import { useSelector } from 'react-redux'
+
 
 const Main:React.FC = () => {
-    const [isAuth, setAuth] = useState(false)
+    const login = useSelector((state:any) => state.autorize.isAuth)
     return (
         <div className={styles.main} >
-            <div className={styles.main__choose}>
-                <span onClick={() => setAuth(false)}>Вход</span>  & 
-                <span onClick={() => setAuth(true)}> Регистрация </span>
-            </div>
-            {!isAuth ? <LoginPage/> : <Registration/>}
+            {login ? <LoginPage/> : <RegistrationPage/>}
         </div>
     )
 }

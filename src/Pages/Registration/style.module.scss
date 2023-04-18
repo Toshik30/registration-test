@@ -6,3 +6,43 @@
         flex-direction: column;
     }
 }
+.registrationPage {
+    display: flex;
+    &__description {
+        max-width: 480px;
+        width: 100%;
+        background: url('../../../public/img/Work.png')bottom  no-repeat, linear-gradient(180deg, #8892FF 0%, #6D6BE5 18.75%);
+        background-size: contain;
+        color: #fff;
+        padding: 92px 40px 0px 64px;
+        min-height: 100vh;
+
+        & > p {
+            margin: 24px 0px 75px;
+        }
+    }
+}
+.registration {
+    margin-left: 24px;
+    margin-top: 48px;
+    width: 100%;
+    position: relative;
+}
+.nav {
+    position: absolute;
+    bottom: 24px;
+    & > * {
+        cursor: pointer;
+    }
+    &__prevBtn {
+        align-items: center;
+        display: flex;
+        color: #6D7895;
+    }
+    &__nextBtn {
+        background: #5E6BF6;
+        border-radius: 20px;
+        color: #fff;
+        padding: 12px 24px;
+    }
+}
