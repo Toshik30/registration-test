@@ -3,6 +3,8 @@ import { Button, Col, Form, Input, Row } from 'antd'
 import styles from './style.module.scss'
 import { useDispatch } from 'react-redux';
 import { registration } from '../../store/slices/authSlice';
+import { InputCustom } from '../../components/Input/InputCustom';
+import { ButtonCustom } from '../../components/ButtonCustom/ButtonCustom';
 
 const onFinish = (values: any) => {
   console.log('Success:', values);
@@ -47,10 +49,7 @@ const Login:React.FC = () => {
                         pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
                     }]}
                 >
-                    <Input 
-                        type='email'
-                        placeholder='Адрес эл. почты'
-                    />
+                    <InputCustom type='text' placeholder='Адрес эл. почты'/>
                 </Form.Item>
                 <Form.Item
                     label="Придумайте пароль"
@@ -61,9 +60,8 @@ const Login:React.FC = () => {
                         message: 'Длина пароля должна быть не менее 8 и не более 14 символов'
                     }]}
                 >
-                    <Input.Password 
-                        placeholder='Укажите ваш пароль'
-                    />
+                    
+                    <InputCustom type='password' placeholder='Укажите ваш пароль'/>
                 </Form.Item>
                 <Form.Item
                     name="confirm"
@@ -85,16 +83,12 @@ const Login:React.FC = () => {
                     }),
                     ]}
                 >
-                    <Input.Password 
-                        placeholder='Повторите ваш пароль'
-                    />
+                    <InputCustom type='password' placeholder='Повторите ваш пароль'/>
                 </Form.Item>
                 <Form.Item 
                     style={{width:'100%'}}
                 >
-                    <Button type="primary" htmlType="submit" style={{width:'100%'}} >
-                        Войти
-                    </Button>
+                    <ButtonCustom title='Войти'  htmlType='submit'/>
                 </Form.Item>
             </Form>
         </>

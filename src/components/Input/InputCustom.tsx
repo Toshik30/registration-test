@@ -1,25 +1,41 @@
+import { Input,InputProps } from 'antd';
 import styles from './style.module.scss';
+import { ForwardRefExoticComponent } from 'react';
 
-export interface InputProps {
-    size?: 's'|'m',
-    disabled?: boolean,
-    type: 'text'|'number'|'email'|'password',
-    placeholder?: string,
+const { Password, Search, TextArea } = Input
+
+// export interface InputProps {
+//     size?: 'full'|'default',
+//     disabled?: boolean,
+//     type: 'textarea'|'search'|'text'|'password'|'number',
+//     placeholder?: string,
+    
+// }
+const inputComponents:Record<string, ForwardRefExoticComponent<any>> = {
+    text: Input,
+    password: Password,
+    search: Search,
+    textarea: TextArea
 }
 export const InputCustom =({
-    size = 'm',
     disabled = false,
     type = 'text',
+    placeholder='',
+    addonBefore,
+    pattern,
     ...props
 
-}:InputProps) => (
-    <input
-        {...props}
-        className={`${styles.input} ${styles[size]}`}
-        disabled={disabled}
-        type={type}
-        children={null}
-    />
-)
-
+}:InputProps) => {
+    const InputComponent = inputComponents[type] || Input
+    return (
+        <InputComponent
+            {...props}
+            className={styles.input}
+            type={type}
+            placeholder={placeholder}
+            addonBefore={addonBefore}
+            pattern
+        />
+    )
+}
 

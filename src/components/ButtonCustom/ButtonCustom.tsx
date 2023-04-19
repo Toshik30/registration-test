@@ -5,13 +5,14 @@ import styles from './style.module.scss'
 export const ButtonCustom = ({
     disabled = false,
     type='primary',
-    title='Click me',
+    title='',
+    ...props
 }:ButtonProps) => (
     <Button
         disabled={disabled}
         type={type}
-        title='Title'
         className={`${styles.btn} ${styles[type]}`}
+        {...props}
     > {title}
     </Button>
 )

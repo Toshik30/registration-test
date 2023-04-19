@@ -2,16 +2,28 @@
     border-radius: 20px;
     font-size: 12px;
     line-height: 15px;
+    padding: 12px 24px;
+    height: 40px;
     &:disabled {
         background: #DCDEFC;
     }
     &.primary {
         background: #3843ED;
         color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        width: 100%;
         box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.16);
+        &:disabled {
+            background: #DCDEFC;
+            color: #8D97B0;
+        }
     }
     &.default {
-        color: #4E5AF2;
-        border: 2px solid #4E5AF2;
+        color: #DCDEFC;
+        border: 1px solid #DCDEFC;
+        background: transparent;
     }
 }

@@ -6,12 +6,13 @@ import styles from './style.module.scss'
 import { ImportOutlined } from '@ant-design/icons'
 import { useDispatch } from 'react-redux'
 import { login } from '../../store/slices/authSlice'
+import { InputCustom } from '../../components/Input/InputCustom'
+import { InputPhone } from '../../stories/Input.stories'
 
 const { Option } = Select
 const { headingCard }:registrationPageTypes = RegistrationData
-const config = {
-    rules: [{ type: 'object' as const, required: true, message: 'Please select time!' }],
-}
+
+
 const onFinish = (fieldsValue: any) => {
     const values = {
       ...fieldsValue,
@@ -38,7 +39,7 @@ const Registration:React.FC = () => {
                             label="Фамилия"
                             rules={[{ required: true, message: 'Пожлуйста введите вашу Фамилию!'}]}
                         >
-                            <Input placeholder='Фамилия'/>
+                            <InputCustom type='text'  placeholder='Фамилия' />
                         </Form.Item>
                         </Col>
                     <Col span={8}>
@@ -47,21 +48,24 @@ const Registration:React.FC = () => {
                             label="Имя"
                             rules={[{ required: true, message: 'Пожлуйста введите ваше Имя!'}]}
                         >
-                            <Input placeholder='Имя'/>
+                            <InputCustom type='text' placeholder='Имя'/>
                         </Form.Item>
                     </Col>
                     <Col span={8}>
                         <Form.Item
                             name="Отчество"
                             label="Отчество"
-                            rules={[{ required: true, message: 'Пожлуйста введите ваше Отчество!'}]}
+                            rules={[{ required: true, message: 'Пожалуйста введите ваше Отчество!'}]}
                         >
-                            <Input placeholder='Отчество'/>
+                            <InputCustom type='text' placeholder='Отчество'/>
                         </Form.Item>
                     </Col>
                 </Row>
-                <Form.Item name="date-picker" label="Дата рождения" {...config} >
-                    <DatePicker style={{ width: '100%' }} />
+                <Form.Item 
+                    label="Дата рождения"
+                    rules={[{ required: true, message: 'Пожлуйста введите дату рождения!'}]}
+                >
+                    <InputCustom type='date' placeholder='Дата Рождения'/>
                 </Form.Item>
                 <Form.Item
                     name="Пол"
@@ -77,28 +81,24 @@ const Registration:React.FC = () => {
                     name="Телефон"
                     label="Телефон"
                     rules={[{ 
-                        required: true, 
+                        required: true,
                         message: 'Введите пожалуйста свой номер телефона!', 
                     }]}
                 >
-                    <Input 
-                        style={{ width: '100%' }} 
-                        addonBefore="+38"
+                    <InputCustom
+                        type='tel'
                         placeholder="(XXX) XXX-XX-XX"
-                        pattern="^\+38\s?\(\d{3}\)\s?\d{3}-\d{2}-\d{2}$"
                     />
                 </Form.Item>
                 <Form.Item
                     name="email"
                     label="E-mail"
-                    rules={[
-                    {
-                        type: 'email',
-                        pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
-                    },
-                    ]}
+                    rules={[{ pattern:/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,}$/i, message: 'Пожлуйста введите дату рождения!'}]}
                 >
-                    <Input placeholder='mail@mail.com'/>
+                    <InputCustom
+                        placeholder="Введите вашу эл.почту"
+                        type="email"
+                    />
                 </Form.Item>
             </Form>
             <Row 
