@@ -11,6 +11,13 @@
     margin: 0 auto;
 
 }
+a {
+    text-decoration: none;
+    color: inherit;
+    &:hover {
+        color: inherit;
+    }
+}
 h1 {
     font-weight: 700;
     font-size: 36px;

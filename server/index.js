@@ -13,6 +13,7 @@ app.use(express.json())
 app.use(cookieParser());
 app.use(cors({
     credentials:true,
+    cors: 'no-cors',
     origin: process.env.CLIENT_URL
 }));
 app.use('/api', router);

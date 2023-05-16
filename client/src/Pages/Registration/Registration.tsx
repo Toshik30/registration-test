@@ -4,11 +4,9 @@ import { registrationPageTypes } from '../../types/types'
 import RegistrationData from './RegistrationData.json'
 import styles from './style.module.scss'
 import { ImportOutlined } from '@ant-design/icons'
-import { useDispatch } from 'react-redux'
-import { login } from '../../store/slices/authSlice'
 import { InputCustom } from '../../components/Input/InputCustom'
-// import { InputPhone } from '../../stories/Input.stories'
 import { ButtonCustom } from '../../components/ButtonCustom/ButtonCustom'
+import { Link } from 'react-router-dom'
 
 const { Option } = Select
 const { headingCard }:registrationPageTypes = RegistrationData
@@ -23,8 +21,6 @@ const onFinish = (fieldsValue: any) => {
 }
 
 const Registration:React.FC = () => {
-    const dispatch = useDispatch()
-    const handleExit = () =>  dispatch(login())
     return (
         <>
             <Form
@@ -146,9 +142,9 @@ const Registration:React.FC = () => {
                 justify={'space-between'}
                 style={{width:'100%'}}
             >
-                <Col className={styles.nav__prevBtn} onClick={handleExit} >
+                <Col className={styles.nav__prevBtn}>
                     <ImportOutlined style={{fontSize: 24, marginRight:12, fontWeight:700}}/>
-                    Выход
+                    <Link to='/'>Выход</Link>
                 </Col>
                 
             <Form.Item>

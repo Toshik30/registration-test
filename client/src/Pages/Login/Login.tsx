@@ -1,29 +1,22 @@
-import React from 'react'
-import { Button, Col, Form, Input, Row } from 'antd'
+import React, {useState, useContext} from 'react'
+import { Col, Form, Row } from 'antd'
 import styles from './style.module.scss'
-import { useDispatch } from 'react-redux';
-import { registration } from '../../store/slices/authSlice';
 import { InputCustom } from '../../components/Input/InputCustom';
 import { ButtonCustom } from '../../components/ButtonCustom/ButtonCustom';
-
-const onFinish = (values: any) => {
-  console.log('Success:', values);
-}
-const onFinishFailed = (errorInfo: any) => {
-  console.log('Failed:', errorInfo);
-}
+import { Link } from 'react-router-dom'
+import { Context } from '../../index';
 
 const Login:React.FC = () => {
-    const dispatch = useDispatch()
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const {store} = useContext(Context)
+  
     return (
         <>  
             <Form
                 name="basic"
                 style={{ width:'100%', maxWidth:336}}
                 initialValues={{ remember: true }}
-                onFinish={onFinish}
-                onFinishFailed={onFinishFailed}
-                // autoComplete="off"
                 className={styles.form}
                 layout='vertical'
             >
@@ -32,12 +25,11 @@ const Login:React.FC = () => {
                     style={{textAlign: 'center'}}
                     className={styles.form__nav}
                 >
-                    <Col span={12} >Вход</Col>
-                    <Col 
-                        span={12} 
-                        className={styles.active}
-                        onClick={() => dispatch(registration())}
-                    >Регистрация
+                    <Col span={12}>
+                        <Link to='/'>Вход</Link>
+                    </Col>
+                    <Col span={12} className={styles.active}>
+                        <Link to='/registration'>Регистрация</Link>
                     </Col>
                 </Row>
                 <Form.Item
@@ -49,7 +41,12 @@ const Login:React.FC = () => {
                         pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
                     }]}
                 >
-                    <InputCustom type='text' placeholder='Адрес эл. почты'/>
+                    <InputCustom 
+                        type='text' 
+                        placeholder='Адрес эл. почты' 
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
                 </Form.Item>
                 <Form.Item
                     label="Введите пароль"
@@ -61,34 +58,17 @@ const Login:React.FC = () => {
                     }]}
                 >
                     
-                    <InputCustom type='password' placeholder='Укажите ваш пароль'/>
+                    <InputCustom 
+                        type='password'
+                        placeholder='Укажите ваш пароль' 
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
                 </Form.Item>
-                {/* <Form.Item
-                    name="confirm"
-                    label="Повторите пароль"
-                    dependencies={['password']}
-                    hasFeedback
-                    rules={[
-                    {
-                        required: true,
-                        message: 'Пожалуйста повторите пароль',
-                    },
-                    ({ getFieldValue }) => ({
-                        validator(_, value) {
-                        if (!value || getFieldValue('password') === value) {
-                            return Promise.resolve();
-                        }
-                        return Promise.reject(new Error('The two passwords that you entered do not match!'));
-                        },
-                    }),
-                    ]}
-                >
-                    <InputCustom type='password' placeholder='Повторите ваш пароль'/>
-                </Form.Item> */}
                 <Form.Item 
                     style={{width:'100%'}}
                 >
-                    <ButtonCustom title='Войти'  htmlType='submit'/>
+                    <ButtonCustom title='Войти'  htmlType='submit' onClick={() => store.login(email,password)}/>
                 </Form.Item>
             </Form>
         </>
