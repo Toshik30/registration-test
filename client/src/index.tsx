@@ -1,16 +1,13 @@
-import React, { createContext } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import './assets/style/global.scss'
-import Store from './store/store';
+import store from './store/store';
+import { Provider } from 'react-redux';
 
 
-interface StoreType {
-  store: Store
-}
-const store = new Store();
-export const Context = createContext<StoreType>({store})
+
 const root = ReactDOM.createRoot(
   
   document.getElementById('root') as HTMLElement
@@ -18,13 +15,11 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-  
-     <Context.Provider value={{store}}>
-      <BrowserRouter>
+     <Provider store={store}>
+        <BrowserRouter>
           <App/>
         </BrowserRouter>
-     </Context.Provider>
-    
+     </Provider>
   </React.StrictMode>
 );
 

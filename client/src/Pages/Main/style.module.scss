@@ -1,6 +1,10 @@
 .main {
     min-height: 100vh;
-
+    position: relative;
+    background: linear-gradient(180deg, #8892FF 0%, #6D6BE5 18.75%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     &__choose {
         position: absolute;
         transform: translateX(640px);
@@ -12,6 +16,23 @@
             &:hover {
                 color: greenyellow;
             }
+        }
+    }
+    .navigation {
+
+        &__link {
+            max-width: 330px;
+            width: 100%;
+            border: 2px solid white;
+            font-weight: 800;
+            text-transform: capitalize;
+            font-size: 40px;
+            color: #fff;
+            display: flex;
+            padding: 12px 25px;
+            justify-content: center;
+            margin: 10px 0px;
+            border-radius: 12px;
         }
     }
 }

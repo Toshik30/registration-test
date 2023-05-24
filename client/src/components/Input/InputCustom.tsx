@@ -4,13 +4,6 @@ import { ForwardRefExoticComponent } from 'react';
 
 const { Password, Search, TextArea } = Input
 
-// export interface InputProps {
-//     size?: 'full'|'default',
-//     disabled?: boolean,
-//     type: 'textarea'|'search'|'text'|'password'|'number',
-//     placeholder?: string,
-    
-// }
 const inputComponents:Record<string, ForwardRefExoticComponent<any>> = {
     text: Input,
     password: Password,
@@ -22,7 +15,6 @@ export const InputCustom =({
     type = 'text',
     placeholder='',
     addonBefore,
-    pattern,
     ...props
 
 }:InputProps) => {
@@ -34,7 +26,6 @@ export const InputCustom =({
             type={type}
             placeholder={placeholder}
             addonBefore={addonBefore}
-            pattern
         />
     )
 }

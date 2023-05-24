@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Form, Row, Select, Col } from 'antd'
 import { registrationPageTypes } from '../../types/types'
 import RegistrationData from './RegistrationData.json'
@@ -7,6 +7,8 @@ import { ImportOutlined } from '@ant-design/icons'
 import { InputCustom } from '../../components/Input/InputCustom'
 import { ButtonCustom } from '../../components/ButtonCustom/ButtonCustom'
 import { Link } from 'react-router-dom'
+import { useAppDispatch } from '../../store/hook';
+import { registration } from '../../store/slices/authSlice'
 
 const { Option } = Select
 const { headingCard }:registrationPageTypes = RegistrationData
@@ -21,6 +23,17 @@ const onFinish = (fieldsValue: any) => {
 }
 
 const Registration:React.FC = () => {
+    const dispatch = useAppDispatch();
+    const [firstName, setFirstName] = useState<string>('')
+    const [secondName, setSecondName] = useState<string>('')
+    const [thirtyName, setThirtyName] = useState<string>('')
+    const [birthday, setBirthday] = useState<string>('')
+    const [sex, setSex] = useState<string>('')
+    const [phone, setPhone] = useState<string>('')
+    const [email, setEmail] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+
+    const handleRegistration = async () => await dispatch(registration({email, password, firstName,secondName,thirtyName,birthday,sex, phone}))
     return (
         <>
             <Form
@@ -36,7 +49,12 @@ const Registration:React.FC = () => {
                             label="Фамилия"
                             rules={[{ required: true, message: 'Пожлуйста введите вашу Фамилию!'}]}
                         >
-                            <InputCustom type='text'  placeholder='Фамилия' />
+                            <InputCustom 
+                                type='text'  
+                                placeholder='Фамилия'
+                                value={secondName}
+                                onChange={(e) => setSecondName(e.target.value)}
+                            />
                         </Form.Item>
                         </Col>
                     <Col span={8}>
@@ -45,7 +63,12 @@ const Registration:React.FC = () => {
                             label="Имя"
                             rules={[{ required: true, message: 'Пожлуйста введите ваше Имя!'}]}
                         >
-                            <InputCustom type='text' placeholder='Имя'/>
+                            <InputCustom 
+                                type='text' 
+                                placeholder='Имя'
+                                value={firstName}
+                                onChange={(e) => setFirstName(e.target.value)}
+                            />
                         </Form.Item>
                     </Col>
                     <Col span={8}>
@@ -54,7 +77,12 @@ const Registration:React.FC = () => {
                             label="Отчество"
                             rules={[{ required: true, message: 'Пожалуйста введите ваше Отчество!'}]}
                         >
-                            <InputCustom type='text' placeholder='Отчество'/>
+                            <InputCustom 
+                                type='text' 
+                                placeholder='Отчество'
+                                value={thirtyName}
+                                onChange={(e) => setThirtyName(e.target.value)}
+                            />
                         </Form.Item>
                     </Col>
                 </Row>
@@ -62,14 +90,22 @@ const Registration:React.FC = () => {
                     label="Дата рождения"
                     rules={[{ required: true, message: 'Пожлуйста введите дату рождения!'}]}
                 >
-                    <InputCustom type='date' placeholder='Дата Рождения'/>
+                    <InputCustom 
+                        type='date' 
+                        placeholder='Дата Рождения'
+                        value={birthday}
+                        onChange={(e) => setBirthday(e.target.value)}
+                    />
                 </Form.Item>
                 <Form.Item
                     name="Пол"
                     label="Пол"
                     rules={[{ required: true, message: 'Пожалуйста выберите Пол!' }]}
                 >
-                    <Select placeholder="Выберите ваш пол">
+                    <Select placeholder="Выберите ваш пол"
+                        value={sex}
+                        onChange={(e) => setSex(e)}
+                    >
                         <Option value="Мужчина">Мужчина</Option>
                         <Option value="Женщина">Женщина</Option>
                     </Select>
@@ -85,6 +121,8 @@ const Registration:React.FC = () => {
                     <InputCustom
                         type='tel'
                         placeholder="(XXX) XXX-XX-XX"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
                     />
                 </Form.Item>
                 <Form.Item
@@ -99,6 +137,8 @@ const Registration:React.FC = () => {
                     <InputCustom
                         placeholder="Введите вашу эл.почту"
                         type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                     />
                 </Form.Item>
                 <Form.Item
@@ -111,7 +151,12 @@ const Registration:React.FC = () => {
                     }]}
                 >
                     
-                    <InputCustom type='password' placeholder='Укажите ваш пароль'/>
+                    <InputCustom 
+                        type='password' 
+                        placeholder='Укажите ваш пароль'
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
                 </Form.Item>
                 <Form.Item
                     name="confirm"
@@ -148,7 +193,7 @@ const Registration:React.FC = () => {
                 </Col>
                 
             <Form.Item>
-                <ButtonCustom title='Далее'  htmlType='submit'/>
+                <ButtonCustom title='Далее'  htmlType='submit' onClick={handleRegistration}/>
             </Form.Item>
                 
            </Row>

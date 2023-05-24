@@ -1,16 +1,19 @@
-import React, {useState, useContext} from 'react'
+import React, { useState } from 'react'
 import { Col, Form, Row } from 'antd'
 import styles from './style.module.scss'
 import { InputCustom } from '../../components/Input/InputCustom';
 import { ButtonCustom } from '../../components/ButtonCustom/ButtonCustom';
 import { Link } from 'react-router-dom'
-import { Context } from '../../index';
+import { login } from '../../store/slices/authSlice';
+import { useAppDispatch } from '../../store/hook';
 
 const Login:React.FC = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const {store} = useContext(Context)
-  
+    const dispatch = useAppDispatch();
+    const [email, setEmail] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+    
+    const handleLogin = async () => await dispatch(login({ email, password }))
+
     return (
         <>  
             <Form
@@ -21,7 +24,6 @@ const Login:React.FC = () => {
                 layout='vertical'
             >
                 <Row 
-                   
                     style={{textAlign: 'center'}}
                     className={styles.form__nav}
                 >
@@ -56,8 +58,7 @@ const Login:React.FC = () => {
                         pattern:/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,14}$/, 
                         message: 'Длина пароля должна быть не менее 8 и не более 14 символов'
                     }]}
-                >
-                    
+                >  
                     <InputCustom 
                         type='password'
                         placeholder='Укажите ваш пароль' 
@@ -68,7 +69,11 @@ const Login:React.FC = () => {
                 <Form.Item 
                     style={{width:'100%'}}
                 >
-                    <ButtonCustom title='Войти'  htmlType='submit' onClick={() => store.login(email,password)}/>
+                    <ButtonCustom 
+                        title='Войти'  
+                        htmlType='submit' 
+                        onClick={handleLogin}
+                    />
                 </Form.Item>
             </Form>
         </>
